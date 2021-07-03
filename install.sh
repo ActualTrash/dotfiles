@@ -23,16 +23,23 @@ info() { echo -e "[${BLUE}${B}*${NC}] ${@}${NC}"; }
 error() { echo -e "[${RED}-${NC}] ${RED}${@}${NC}"; }
 panic() { echo -e "[${RED_BG}PANIC${NC}] ${RED_BG}${@}${NC}"; }
 success() { echo -e "[${GREEN}+${NC}] ${GREEN}${@}${NC}"; }
+ins() { echo -e "[${BLUE}${B}INS${NC}] ${@}${NC}"; }
+mov() { echo -e "[${RED}${B}MOV${NC}] ${@}${NC}"; }
+new() { echo -e "[${GREEN}${B}NEW${NC}] ${@}${NC}"; }
 # -------------------------------------------------------------------
 spinner() {
     pid=$! # Process Id of the previous running command    
-    spin='-\|/'
+    spin=('-' '\' '|' '/')
+    #spin=('o--' '-o-' '--o' '-o-')
+    #spin=("${RED}o${YELLOW}---" "-${RED}o${YELLOW}--" "--${RED}o${YELLOW}-" "---${RED}o${YELLOW}" "--${RED}o${YELLOW}-" "-${RED}o${YELLOW}--") # Only works if spin substitution is substituted without %s in the printf
+    #spin=('o---' '-o--' '--o-' '---o' '--o-' '-o--')
+    #spin=('----' 'o---' '-o--' '--o-' '---o' '----' '---o' '--o-' '-o--' 'o---')
+    #spin=('----' 'o---' 'Oo--' 'oOo-' '-oOo' '--oO' '---o' '----' '---o' '--oO' '-oOo' 'oOo-' 'Oo--' 'o---')
     i=0
-    while kill -0 $pid 2>/dev/null
-    do
-      i=$(( (i+1) %4 ))
-      printf "\r[${YELLOW}%s${NC}] %s" "${spin:$i:1}" "$1"
+    while kill -0 $pid 2>/dev/null; do
+      printf "\r[${YELLOW}%s${NC}] %s" "${spin[$i]}" "$1"
       sleep .1
+      i=$(( (i+1) % ${#spin[@]} ))
     done
     printf "\r[${GREEN}Done${NC}] %s\n" "$1"
 }
@@ -40,9 +47,9 @@ spinner() {
 smart_brew() {
     prog="${BLUE}${B}$1${NC}"
     if brew list $1 &>/dev/null; then
-        info "$prog is already installed. Skipping."
+        ins "$prog is already installed. Skipping."
     else 
-        info "Installing $prog"; brew install $1
+        ins "Installing $prog"; brew install $1
     fi
 }
 # -------------------------------------------------------------------
@@ -63,19 +70,12 @@ smart_brew fzf
 smart_brew fish
 
 
-sleep 3 &
-spinner 'Waiting for a long task'
+# ----< Set up shell >----
+# Make backup dir
+if [ ! -d ./bak ]; then
+    mkdir ./bak
+    new "Made backup directory ${GREEN}${B}./bak${NC}. Files that conflict the install process will show up here."
+fi
 
-
-sleep .1 &
-spinner 'Installing scripts'
-sleep .1 &
-spinner 'Installing stuff'
-sleep 3.8 &
-spinner 'Installing more stuff'
-sleep 1.9 &
-spinner 'Installing moist stuff'
-sleep .3 &
-spinner 'Installing ss'
-sleep .7 &
-spinner 'Installing sussy'
+sleep 2 &
+spinner 'Waiting for a thing'
