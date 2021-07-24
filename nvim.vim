@@ -37,6 +37,7 @@ tnoremap <esc> <C-\><C-n>
 " ---------------------------------------------
  
 
+
 " Use a good color scheme.
 colorscheme nord
 
@@ -55,7 +56,28 @@ filetype plugin indent on
 " advocate for setting a local leader rather than limiting a map to a buffer.
 " I've decided against doing that since I don't run any plugins and don't need
 " the additional complexity.
-" let mapleader = " " " Set tab width to four spaces set expandtab set shiftwidth=4 " Enable mouse support.  set mouse=a " Enable persistent undo.  set undofile " Use incremental search and highlight as we go.  set hlsearch set incsearch " Search should be case insensitive unless containing uppercase characters.  set ignorecase set smartcase " Show line numbers as relative so relative navigation is easier. Show actual line number for active line.
+" let mapleader = " "
+
+" Set tab width to four spaces
+set expandtab
+set shiftwidth=4
+
+" Enable mouse support.
+set mouse=a
+
+" Enable persistent undo.
+set undofile
+
+" Use incremental search and highlight as we go.
+set hlsearch
+set incsearch
+
+" Search should be case insensitive unless containing uppercase characters.
+set ignorecase
+set smartcase
+
+" Show line numbers as relative so relative navigation is easier. Show actual
+" line number for active line.
 set relativenumber
 set number
 
