@@ -1,0 +1,4 @@
+jq
+yq
+fd
+ripgrep
