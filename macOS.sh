@@ -19,8 +19,16 @@ install() {
         ins "Installing $prog"; brew install $1
     fi
 }
+install() {
+    prog="${BLUE}${B}$1${NC}"
+    if which $1 &>/dev/null; then
+        ins "$prog is already installed. Skipping."
+    else 
+        ins "Installing $prog"; brew install $1
+    fi
+
+}
 # -------------------------------------------------------------------
 
 # Install Homebrew
-ins 'Homebrew'
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+which brew &>/dev/null || ( ins 'Homebrew' && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" )

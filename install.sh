@@ -32,6 +32,7 @@ install lsd
 install yq
 install jq
 install fzf
+install tldr
 
 # Install Shell
 install fish
