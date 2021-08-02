@@ -10,6 +10,7 @@ B=$(tput bold)
 
 # Loggers
 info() { echo -e "[${BLUE}${B}*${NC}] ${@}${NC}"; }
+warn() { echo -e "[${YELLOW}${B}!${NC}] ${YELLOW}${@}${NC}"; }
 error() { echo -e "[${RED}-${NC}] ${RED}${@}${NC}"; }
 panic() { echo -e "[${RED_BG}PANIC${NC}] ${RED_BG}${@}${NC}"; }
 success() { echo -e "[${GREEN}+${NC}] ${GREEN}${@}${NC}"; }
