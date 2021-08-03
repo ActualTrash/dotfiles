@@ -1,13 +1,16 @@
+# Make sure that we only load this script once
+[ "$BASHUTILS_LOADED" = true ] && return || export BASHUTILS_LOADED=true
+# -------------------------------------------------------------------
 # Colors
-RED='\033[0;31m'
-YELLOW='\033[0;33m'
-PINK='\033[0;35m'
-RED_BG='\033[0;41m'
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-B=$(tput bold)
-
+export RED='\033[0;31m'
+export YELLOW='\033[0;33m'
+export PINK='\033[0;35m'
+export RED_BG='\033[0;41m'
+export GREEN='\033[0;32m'
+export BLUE='\033[0;34m'
+export NC='\033[0m'
+export B=$(tput bold)
+# -------------------------------------------------------------------
 # Loggers
 info() { echo -e "[${BLUE}${B}*${NC}] ${@}${NC}"; }
 warn() { echo -e "[${YELLOW}${B}!${NC}] ${YELLOW}${@}${NC}"; }
@@ -16,7 +19,18 @@ panic() { echo -e "[${RED_BG}PANIC${NC}] ${RED_BG}${@}${NC}"; }
 success() { echo -e "[${GREEN}+${NC}] ${GREEN}${@}${NC}"; }
 ins() { echo -e "[${BLUE}${B}INS${NC}] ${@}${NC}"; }
 mov() { echo -e "[${RED}${B}MOV${NC}] ${@}${NC}"; }
+cpy() { echo -e "[${YELLOW}${B}CPY${NC}] ${@}${NC}"; }
 new() { echo -e "[${GREEN}${B}NEW${NC}] ${@}${NC}"; }
+
+export -f info
+export -f warn
+export -f error
+export -f panic
+export -f success
+export -f ins
+export -f mov
+export -f cpy
+export -f new
 # -------------------------------------------------------------------
 spinner() {
     pid=$! # Process Id of the previous running command    
@@ -34,4 +48,5 @@ spinner() {
     done
     printf "\r[${GREEN}Done${NC}] %s\n" "$1"
 }
+export -f spinner
 # -------------------------------------------------------------------

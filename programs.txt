@@ -1,5 +1,0 @@
-lsd
-jq
-yq
-fd
-ripgrep

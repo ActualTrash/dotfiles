@@ -19,8 +19,17 @@ install() {
     fi
 }
 
+# Install kitty
+if ! which kitty &>/dev/null; then
+    ins 'Installing Kitty terminal'
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+fi
+
+# Install good software
+install yay
+
 #while read line; do
-#    prog="${BLUE}${B}$line${NC}"
-#    ins "Installing $prog"
-    #sudo pacman -S $line --noconfirm
+    #prog="${BLUE}${B}$line${NC}"
+    #ins "Installing $prog"
+    #install $line
 #done <programs.txt

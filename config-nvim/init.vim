@@ -11,7 +11,7 @@ Plug 'zhou13/vim-easyescape'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
-" Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe'
 
 " Initialize plugin system
 call plug#end()
@@ -35,8 +35,6 @@ let g:easyescape_timeout = 80
 tnoremap <esc> <C-\><C-n>
 
 " ---------------------------------------------
- 
-
 
 " Use a good color scheme.
 colorscheme nord
