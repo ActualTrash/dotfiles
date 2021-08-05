@@ -35,4 +35,5 @@ install jq
 install fzf
 install tldr
 
+# Install config files
 ./configs.sh

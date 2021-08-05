@@ -6,18 +6,16 @@
 
 source bashutils.sh
 
-dirpath="~/.config/fish"
-abs_dirpath="${dirpath/#\~/$HOME}" # Substitute the ~ for the value in the $HOME variable
-path="$dirpath/config.fish"
-abs_path="$abs_dirpath/config.fish"
+# ~/.config is assumed to exist
+path="~/.config/fish"
+abs_path="${path/#\~/$HOME}" # Substitute the ~ for the value in the $HOME variable
 
-# Make sure the nvim directory exists
-[ ! -d "$abs_dirpath" ] && mkdir -p "$abs_dirpath"
-
-if [ -f "$abs_path" ]; then
+# If the directory exists, back it up.
+if [ -d "$abs_path" ]; then
     mov "Backing up old config.fish file: $path --> ./bak"
+    [ -d "bak/fish" ] && rm -rf bak/fish # Delete the old backup
     mv $abs_path bak
 fi
 
-cpy "Installing init.vim: ./config-nvim/init.vim --> $path"
-cp config-fish/config.fish $abs_path
+cpy "Installing fish config: ./config-fish/fish --> $path"
+cp -r config-fish/fish ~/.config/fish

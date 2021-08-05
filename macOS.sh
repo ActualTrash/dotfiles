@@ -11,7 +11,7 @@
 source bashutils.sh
 
 # -------------------------------------------------------------------
-install() {
+install() { # Finds programs using brew
     prog="${BLUE}${B}$1${NC}"
     if brew list $1 &>/dev/null; then
         ins "$prog is already installed. Skipping."
@@ -19,14 +19,13 @@ install() {
         ins "Installing $prog"; brew install $1
     fi
 }
-install() {
+install() { # Finds programs using which
     prog="${BLUE}${B}$1${NC}"
     if which $1 &>/dev/null; then
         ins "$prog is already installed. Skipping."
     else 
         ins "Installing $prog"; brew install $1
     fi
-
 }
 # -------------------------------------------------------------------
 

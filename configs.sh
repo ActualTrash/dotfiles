@@ -20,3 +20,5 @@ fi
 # Configure nvim
 info 'Configuring nvim'
 ./config-nvim/install.sh
+info 'Configuring fish'
+./config-fish/install.sh
