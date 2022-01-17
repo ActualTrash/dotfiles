@@ -4,3 +4,5 @@ end
 
 alias ls='lsd'
 alias l='ls -lah'
+alias c='clear'
+alias hw='cd ~/Documents/school/UVA/2021-fall'
