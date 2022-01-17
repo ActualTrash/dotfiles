@@ -33,9 +33,9 @@ i() {
     ins "Queueing $prog for installation"
 
     if [ $1 = 'pac' ]; then
-        pacman -S $3
+        pac_queue="$pac_queue $3"
     elif [ $1 = 'yay' ]; then
-        yay $3
+        yay_queue="$yay_queue $3"
     else
         error "Invalid argument to install function: $1"
         exit 1
@@ -47,6 +47,10 @@ install_type='core'
 if [ $1 = 'all' ]; then
     install_type='all'
 fi
+
+# A list of programs to install all at once to improve speed
+pac_queue="" # pacman
+yay_queue="" # yay
 # ---------------------------------------------------------------
 
 
@@ -101,6 +105,11 @@ i pac 'x-only' discord
 
 ## Browser
 i pac 'x-only' brave
+
+
+# Install everything in the queue
+pacman -S $pac_queue
+yay $yay_queue
 
 
 # Configure everything
