@@ -131,5 +131,9 @@ yay $yay_queue
 # ./configs.sh
 # ./config-nvim/install.sh
 
+# Install vimplug (vim plugin manager)
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 #./config-fish/install.sh
 # ./config-i3/install.sh # Make sure to put a check for x-only here
