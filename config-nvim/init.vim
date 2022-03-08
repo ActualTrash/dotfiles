@@ -15,6 +15,8 @@ Plug 'tpope/vim-surround'
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'dag/vim-fish' " Adds syntaxs highlighting for fish scripts
 Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
@@ -59,8 +61,20 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+    \ 'colorscheme': 'wombat',
+    \ 'component': {
+    \     'cocstatus': '%{coc#status()}',
+    \     'charhexvalue': '0x%B',
+    \     'gitbranch': ' %{fugitive#head()}'
+    \ },
+    \ 'active': {
+    \   'left': [
+    \             ['mode', 'paste'],
+    \             [ 'readonly', 'gitbranch', 'filename', 'modified', 'hexcharstaus']
+    \         ]
+    \     },
+    \ 'component_function': { 'gitbranch': 'FugitiveHead' }
+    \ }
 
 " Enable plugins and indentation for specific file types.
 filetype plugin indent on
@@ -103,8 +117,11 @@ set clipboard=unnamed
 " YouCompleteMe Setup
 " set completeopt-=preview " Remove the annoying popup window
 
+" Set up coc to use tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Post vim video
+" From the vim video
 filetype plugin on
 " Search into subdirectories for files with tab completion
 set path+=**
