@@ -6,8 +6,13 @@
 
 # Dependencies
 # - pacman
+# - curl
+# - makepkg
 
 source bashutils.sh
+
+# Exit on errors
+# set -e
 
 # ---------------------------------------------------------------
 # Installs program(s) using the specified package manager
@@ -15,16 +20,17 @@ source bashutils.sh
 # $1 - Package manager. Either 'pac' (for pacman) or 'yay'
 # $2 - Install type. 'core' if this package should always be installed
 # $3 - Program(s) to install
+# $4 - [Optional] The name to check if the package is installed
 i() {
     # Check whether we are doing a core install or a all install
     # If we are only doing a core install and 
-    if [ $3 != 'core' && install_type = 'core' ]; then
+    if [ "$2" != 'core' ] && [ "$install_type" = 'core' ]; then
         return
     fi
 
     # If the program is already installed, skip it
-    prog="${BLUE}${B}$1${NC}"
-    if which $1 &>/dev/null; then
+    prog="${BLUE}${B}$3${NC}"
+    if which $3 &>/dev/null; then
         ins "$prog is already installed. Skipping."
         return
     fi
@@ -44,7 +50,7 @@ i() {
 # ---------------------------------------------------------------
 # Set the installation type
 install_type='core'
-if [ $1 = 'all' ]; then
+if [ "$1" = 'all' ]; then
     install_type='all'
 fi
 
@@ -54,21 +60,28 @@ yay_queue="" # yay
 # ---------------------------------------------------------------
 
 # Install yay
-pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+ins Installing yay
+sudo pacman -S --needed git base-devel
+if [ ! -d yay-bin ]; then
+	git clone https://aur.archlinux.org/yay-bin.git
+fi
+cd yay-bin
+makepkg -si
+cd ..
+rm -rf yay-bin
 
 # Install kitty
-if ! which kitty &>/dev/null; then
-    ins 'Installing Kitty terminal'
-    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-fi
+# if ! which kitty &>/dev/null; then
+#    ins 'Installing Kitty terminal'
+#    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+#fi
 
 # Install good software
+# Format:
+# i <pkg manager> <pkg type> <pkg name> [cmd name]
 
 ## The one and only good text editor
-i pac 'core' nvim
-
-## Package managers
-i pac 'core' yay
+i pac 'core' neovim #nvim
 
 ## Shell
 i pac 'core' fish
@@ -90,17 +103,17 @@ i pac 'core' lsd
 ## Pretty Printers
 i pac 'core' yq
 i pac 'core' jq
-i pac 'core' delta
+i pac 'core' git-delta #delta
 
 ## Find / replace
 i pac 'core' fzf
-i pac 'core' rg
+i pac 'core' ripgrep #rg
 i pac 'core' fd
 
 ## Information / Documentation
 i pac 'core' tldr
-i pac 'core' cheat
-i pac 'core' gotop
+i yay 'core' cheat
+i yay 'core' gotop-bin #gotop
 
 ## Comms
 i pac 'x-only' discord
@@ -110,11 +123,12 @@ i pac 'x-only' brave
 
 
 # Install everything in the queue
-pacman -S $pac_queue
+sudo pacman -Sy $pac_queue
 yay $yay_queue
 
-
 # Configure everything
-./configs-nvim/install.sh
-#./configs-fish/install.sh
-./configs-i3/install.sh # Make sure to put a check for x-only here
+# ./configs.sh
+# ./config-nvim/install.sh
+
+#./config-fish/install.sh
+# ./config-i3/install.sh # Make sure to put a check for x-only here
