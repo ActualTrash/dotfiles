@@ -60,15 +60,18 @@ yay_queue="" # yay
 # ---------------------------------------------------------------
 
 # Install yay
-ins Installing yay
-sudo pacman -S --needed git base-devel
-if [ ! -d yay-bin ]; then
-	git clone https://aur.archlinux.org/yay-bin.git
+
+if [ ! which $3 &>/dev/null ]; then
+    ins Installing yay
+    sudo pacman -S --needed git base-devel
+    if [ ! -d yay-bin ]; then
+    	git clone https://aur.archlinux.org/yay-bin.git
+    fi
+    cd yay-bin
+    makepkg -si
+    cd ..
+    rm -rf yay-bin
 fi
-cd yay-bin
-makepkg -si
-cd ..
-rm -rf yay-bin
 
 # Install kitty
 # if ! which kitty &>/dev/null; then
@@ -82,6 +85,7 @@ rm -rf yay-bin
 
 ## The one and only good text editor
 i pac 'core' neovim #nvim
+i pac 'core' nodejs # Dependency of coc vim plugin
 
 ## Shell
 i pac 'core' fish
