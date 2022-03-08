@@ -99,7 +99,7 @@ i pac 'x-only' alsamixer
 
 ## General utility
 i pac 'core' lsd
-i pca 'core' openssh
+i pac 'core' openssh
 
 ## Pretty Printers
 i pac 'core' yq
