@@ -34,5 +34,7 @@ install yq
 install jq
 install fzf
 install tldr
+install duf
 
+# Install config files
 ./configs.sh

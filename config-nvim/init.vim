@@ -8,16 +8,22 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'preservim/nerdtree'
 Plug 'zhou13/vim-easyescape'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'tpope/vim-surround'
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'dag/vim-fish' " Adds syntaxs highlighting for fish scripts
+Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
 
 " =====[MAP CUSTOM KEYS]=======
 
+" Why isn't this the default lol
 noremap ; :
 
 " Fix page movement keybinds
@@ -39,13 +45,36 @@ tnoremap <esc> <C-\><C-n>
 " Use a good color scheme.
 colorscheme nord
 
-" Set AirLine
-let g:airline_theme='deus'
-set t_Co=256
-let g:airline_powerline_fonts = 1
-
 " Enable syntax highlighting.
 syntax on
+
+" Set AirLine
+""let g:airline_theme='deus'
+"let g:airline_theme='angr'
+"set t_Co=256
+"let g:airline_powerline_fonts = 1
+
+" Set lightline
+set laststatus=2
+if !has('gui_running')
+  set t_Co=256
+endif
+
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'component': {
+    \     'cocstatus': '%{coc#status()}',
+    \     'charhexvalue': '0x%B',
+    \     'gitbranch': ' %{fugitive#head()}'
+    \ },
+    \ 'active': {
+    \   'left': [
+    \             ['mode', 'paste'],
+    \             [ 'readonly', 'gitbranch', 'filename', 'modified', 'hexcharstaus']
+    \         ]
+    \     },
+    \ 'component_function': { 'gitbranch': 'FugitiveHead' }
+    \ }
 
 " Enable plugins and indentation for specific file types.
 filetype plugin indent on
@@ -82,4 +111,19 @@ set number
 " Show line and character number in lower right hand corner.
 set ruler
 
+" Set the main vim clipboard to be the same as the host operating system
 set clipboard=unnamed
+
+" YouCompleteMe Setup
+" set completeopt-=preview " Remove the annoying popup window
+
+" Set up coc to use tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" From the vim video
+filetype plugin on
+" Search into subdirectories for files with tab completion
+set path+=**
+" Display all matching files when autocompleting
+set wildmenu

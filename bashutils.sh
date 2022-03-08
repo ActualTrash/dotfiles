@@ -12,14 +12,15 @@ export NC='\033[0m'
 export B=$(tput bold)
 # -------------------------------------------------------------------
 # Loggers
-info() { echo -e "[${BLUE}${B}*${NC}] ${@}${NC}"; }
-warn() { echo -e "[${YELLOW}${B}!${NC}] ${YELLOW}${@}${NC}"; }
-error() { echo -e "[${RED}-${NC}] ${RED}${@}${NC}"; }
+info() { echo -e "[${BLUE}${B} * ${NC}] ${@}${NC}"; }
+warn() { echo -e "[${YELLOW}${B} ! ${NC}] ${YELLOW}${@}${NC}"; }
+error() { echo -e "[${RED} - ${NC}] ${RED}${@}${NC}"; }
 panic() { echo -e "[${RED_BG}PANIC${NC}] ${RED_BG}${@}${NC}"; }
 success() { echo -e "[${GREEN}+${NC}] ${GREEN}${@}${NC}"; }
 ins() { echo -e "[${BLUE}${B}INS${NC}] ${@}${NC}"; }
 mov() { echo -e "[${RED}${B}MOV${NC}] ${@}${NC}"; }
 cpy() { echo -e "[${YELLOW}${B}CPY${NC}] ${@}${NC}"; }
+lnk() { echo -e "[${YELLOW}${B}LNK${NC}] ${@}${NC}"; }
 new() { echo -e "[${GREEN}${B}NEW${NC}] ${@}${NC}"; }
 
 export -f info
@@ -30,6 +31,7 @@ export -f success
 export -f ins
 export -f mov
 export -f cpy
+export -f lnk
 export -f new
 # -------------------------------------------------------------------
 spinner() {
