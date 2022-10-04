@@ -17,6 +17,10 @@ Plug 'dag/vim-fish' " Adds syntaxs highlighting for fish scripts
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'dracula/vim'
+"Plug 'hashivim/vim-terraform'
+Plug 'sickill/vim-monokai'
+Plug 'phanviet/vim-monokai-pro'
 
 " Initialize plugin system
 call plug#end()
@@ -43,7 +47,8 @@ tnoremap <esc> <C-\><C-n>
 " ---------------------------------------------
 
 " Use a good color scheme.
-colorscheme nord
+set termguicolors
+colorscheme monokai_pro
 
 " Enable syntax highlighting.
 syntax on
@@ -69,11 +74,14 @@ let g:lightline = {
     \ },
     \ 'active': {
     \   'left': [
-    \             ['mode', 'paste'],
-    \             [ 'readonly', 'gitbranch', 'filename', 'modified', 'hexcharstaus']
-    \         ]
+    \            ['mode', 'paste'],
+    \            [ 'readonly', 'gitbranch-raw', 'filename', 'modified']
+    \         ],
+    \   'righta': [
+    \            ['charhexvalue']
+    \   ]
     \     },
-    \ 'component_function': { 'gitbranch': 'FugitiveHead' }
+    \ 'component_function': { 'gitbranch-raw': 'fugitive#head' }
     \ }
 
 " Enable plugins and indentation for specific file types.
@@ -111,6 +119,10 @@ set number
 " Show line and character number in lower right hand corner.
 set ruler
 
+"function Fun()
+"       let h = system("kill -9 $(ps -aef | grep iTerm | cut -f 3 -w)")
+"endfunction
+
 " Set the main vim clipboard to be the same as the host operating system
 set clipboard=unnamed
 
@@ -127,3 +139,4 @@ filetype plugin on
 set path+=**
 " Display all matching files when autocompleting
 set wildmenu
+" call Fun()

@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set HW '/Users/Chase/Documents/school/UVA/2022-spring'
+set HW '/Users/Chase/Documents/school/UVA/2022-fall'
 
 alias ls='lsd'
 alias l='ls -lah'
@@ -21,3 +21,7 @@ source ~/.config/fish/functions/fish_user_keybindings.fish
 set fish_key_bindings fish_user_key_bindings
 
 fish_add_path ~/scripts
+
+# CS4620 (Compilers) Environment stuff for TIPC
+export LLVM_DIR=/usr/local/opt/llvm@14/lib/cmake
+export TIPCLANG=/usr/local/opt/llvm@14/bin/clang
