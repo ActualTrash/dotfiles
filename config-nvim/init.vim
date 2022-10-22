@@ -10,17 +10,18 @@ Plug 'preservim/nerdtree'
 Plug 'zhou13/vim-easyescape'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-Plug 'arcticicestudio/nord-vim'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-surround'
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'dag/vim-fish' " Adds syntaxs highlighting for fish scripts
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
-Plug 'dracula/vim'
+"Plug 'dracula/vim'
 "Plug 'hashivim/vim-terraform'
-Plug 'sickill/vim-monokai'
+"Plug 'sickill/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
+Plug 'tomlion/vim-solidity'
 
 " Initialize plugin system
 call plug#end()
