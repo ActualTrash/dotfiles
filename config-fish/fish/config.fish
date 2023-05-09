@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set HW '/Users/Chase/Documents/school/UVA/2022-fall'
+set HW '/Users/Chase/Documents/school/UVA/2023-spring'
 
 alias ls='lsd'
 alias l='ls -lah'

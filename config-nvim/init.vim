@@ -141,3 +141,8 @@ set path+=**
 " Display all matching files when autocompleting
 set wildmenu
 " call Fun()
+
+
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" execute "helptags " . g:opamshare . "/merlin/vim/doc"
