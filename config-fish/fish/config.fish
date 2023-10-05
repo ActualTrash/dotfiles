@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set HW '/Users/Chase/Documents/school/UVA/2023-spring'
+set HW '/Users/Chase/Documents/school/UVA/2023-fall'
 
 alias ls='lsd'
 alias l='ls -lah'
@@ -11,6 +11,7 @@ alias hw="cd $HW"
 alias vfzf='nvim (fzf)'
 alias docs='cd ~/Documents'
 alias wd='whatsdue'
+alias key='pbcopy < ~/.ssh/id_ed25519.pub'
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 

@@ -22,6 +22,7 @@ Plug 'tpope/vim-fugitive'
 "Plug 'sickill/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'tomlion/vim-solidity'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Initialize plugin system
 call plug#end()
