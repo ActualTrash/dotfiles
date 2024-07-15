@@ -15,13 +15,18 @@ Plug 'tpope/vim-surround'
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'dag/vim-fish' " Adds syntaxs highlighting for fish scripts
 Plug 'itchyny/lightline.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 "Plug 'dracula/vim'
 "Plug 'hashivim/vim-terraform'
 "Plug 'sickill/vim-monokai'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'tomlion/vim-solidity'
+"Plug 'phanviet/vim-monokai-pro'
+"Plug 'tomlion/vim-solidity'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'jvirtanen/vim-hcl'
+Plug 'elkowar/yuck.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -48,8 +53,9 @@ tnoremap <esc> <C-\><C-n>
 " ---------------------------------------------
 
 " Use a good color scheme.
-set termguicolors
-colorscheme monokai_pro
+"set termguicolors
+"colorscheme monokai_pro
+
 
 " Enable syntax highlighting.
 syntax on
@@ -140,9 +146,3 @@ filetype plugin on
 set path+=**
 " Display all matching files when autocompleting
 set wildmenu
-" call Fun()
-
-
-let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-" execute "helptags " . g:opamshare . "/merlin/vim/doc"
